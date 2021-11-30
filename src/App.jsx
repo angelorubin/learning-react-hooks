@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CustomHook from "./pages/custom-hook";
+import Home from "./pages/home";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/custom-hook" element={<CustomHook />} />
+				<Route path="/" element={<Home />} />
 			</Routes>
 		</BrowserRouter>
 	);

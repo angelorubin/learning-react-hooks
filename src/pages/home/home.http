@@ -1,0 +1,5 @@
+@url = "https://5ba6cfd768c16e0014c4ee95.mockapi.io/api/v1/users/"
+
+###
+GET {{url}}
+content-type: application/json
