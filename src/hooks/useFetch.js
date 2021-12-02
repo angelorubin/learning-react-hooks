@@ -4,16 +4,20 @@ import { http } from "config/api";
 export default function useFetch(url, options) {
 	const [response, setResponse] = useState(null);
 	const [error, setError] = useState(null);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		console.log(http());
-
 		const fetchData = async () => {
+			setLoading(true);
 			try {
-				return http(url, options).then((res) => {
-					console.log(res.data);
-					setResponse([res.data]);
-				});
+				const response = await http(url, options);
+				if (response.data.length > 1) {
+					setResponse(response.data);
+					setLoading(false);
+				} else {
+					setResponse([response.data]);
+					setLoading(false);
+				}
 			} catch (error) {
 				setError(error);
 			}
@@ -22,5 +26,5 @@ export default function useFetch(url, options) {
 		fetchData();
 	}, []);
 
-	return { response, error };
+	return { response, error, loading };
 }
